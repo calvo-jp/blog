@@ -4,7 +4,7 @@
 	import HashIcon from '$lib/hash-icon.svelte';
 
 	let {data, children} = $props();
-	let authenticated = $derived(!Boolean(data.user));
+	let authenticated = $derived(Boolean(data.user));
 
 	let links = $derived([
 		{
@@ -17,17 +17,19 @@
 			hidden: !authenticated,
 		},
 		{
-			icon: HashIcon,
-			href: `/${data.params.tag}`,
-			label: data.params.tag,
-			hidden: !data.params.tag,
-		},
-		{
 			href: '/login',
 			label: 'Sign in to see Your Feed',
 			hidden: authenticated,
 		},
+		{
+			icon: HashIcon,
+			href: `/${$page.params.tag}`,
+			label: $page.params.tag,
+			hidden: !$page.params.tag,
+		},
 	]);
+
+	let popularTags = Array.from({length: 10}).map(() => 'lorem');
 </script>
 
 <svelte:head>
@@ -35,12 +37,16 @@
 </svelte:head>
 
 <div>
-	<div class="flex flex-col items-center bg-emerald-500 px-4 py-10 text-white">
-		<h1 class="font-heading text-5xl leading-none drop-shadow-md">conduit</h1>
-		<p class="mt-3 text-2xl font-light leading-none">
-			A place to share your knowledge
-		</p>
-	</div>
+	{#if !authenticated}
+		<div
+			class="flex flex-col items-center bg-emerald-500 px-4 py-10 text-white"
+		>
+			<h1 class="font-heading text-5xl leading-none drop-shadow-md">conduit</h1>
+			<p class="mt-3 text-2xl font-light leading-none">
+				A place to share your knowledge
+			</p>
+		</div>
+	{/if}
 
 	<div class="mx-auto flex max-w-screen-lg items-start gap-8 px-4 py-6">
 		<section class="grow">
@@ -73,11 +79,11 @@
 			<h2 class="tracking-wide">Popular Tags</h2>
 
 			<ul class="mt-2.5 flex flex-wrap gap-1">
-				{#each Array.from({length: 10}) as _}
+				{#each popularTags as tag}
 					<li
 						class="rounded-full bg-neutral-500 px-2 py-1 text-sm leading-none text-white transition-colors duration-200 hover:bg-neutral-600"
 					>
-						<a href="/lorem">lorem</a>
+						<a href="/{tag}">{tag}</a>
 					</li>
 				{/each}
 			</ul>
