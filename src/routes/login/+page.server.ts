@@ -1,5 +1,5 @@
 import {prisma} from '$lib/server/prisma';
-import {redirect} from '@sveltejs/kit';
+import {fail, redirect} from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import * as v from 'valibot';
 import type {Actions, PageServerLoad} from './$types';
@@ -17,13 +17,13 @@ export const actions: Actions = {
 		});
 
 		if (!parsed.success) {
-			return {
-				error: parsed.issues[0].message,
-			};
+			return fail(400, {
+				success: false,
+				message: parsed.issues[0].message,
+			});
 		}
 
 		const {email, password} = parsed.output;
-
 		const user = await prisma.user.findUnique({
 			where: {email},
 			select: {
@@ -37,9 +37,10 @@ export const actions: Actions = {
 			redirect(303, '/');
 		}
 
-		return {
-			error: 'Invalid username or password',
-		};
+		return fail(400, {
+			success: false,
+			message: 'Invalid username or password',
+		});
 	},
 };
 

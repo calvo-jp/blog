@@ -10,8 +10,10 @@ export const handle: Handle = async ({event, resolve}) => {
 				where: {id},
 				select: {
 					id: true,
+					bio: true,
 					name: true,
 					email: true,
+					image: true,
 				},
 			});
 

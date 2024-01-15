@@ -1,5 +1,5 @@
 import {prisma} from '$lib/server/prisma';
-import {redirect} from '@sveltejs/kit';
+import {fail, redirect} from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import * as v from 'valibot';
 import type {Actions, PageServerLoad} from './$types';
@@ -18,17 +18,19 @@ export const actions: Actions = {
 		});
 
 		if (!parsed.success) {
-			return {
-				error: parsed.issues[0].message,
-			};
+			return fail(400, {
+				success: false,
+				message: parsed.issues[0].message,
+			});
 		}
 
 		const {name, email, password} = parsed.output;
 
 		if (await prisma.user.exists({email})) {
-			return {
-				error: 'Email already in use',
-			};
+			return fail(400, {
+				success: false,
+				message: 'Email already in use',
+			});
 		}
 
 		const user = await prisma.user.create({

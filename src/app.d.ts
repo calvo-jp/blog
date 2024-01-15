@@ -7,8 +7,10 @@ declare global {
 		interface Locals {
 			user: null | {
 				id: string;
+				bio: string | null;
 				name: string;
 				email: string;
+				image: string | null;
 			};
 		}
 
