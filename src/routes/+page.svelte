@@ -1,0 +1,101 @@
+<script lang="ts">
+	import ButtonGroup from '$lib/button-group.svelte';
+	import Button from '$lib/button.svelte';
+	import {dataAttr} from '$lib/data-attr';
+	import HashIcon from '$lib/hash-icon.svelte';
+	import Post from '$lib/post.svelte';
+
+	let {data} = $props();
+	let authenticated = $derived(Boolean(data.user));
+
+	let links = $derived([
+		{
+			href: '/?tab=global-feed',
+			label: 'Global Feed',
+			active: true,
+		},
+		{
+			href: '?tab=your-feed',
+			label: 'Your Feed',
+			active: false,
+			hidden: !authenticated,
+		},
+		{
+			href: `?tab=lorem`,
+			icon: HashIcon,
+			label: 'lorem',
+			active: false,
+			hidden: !authenticated,
+		},
+		{
+			href: '/login',
+			label: 'Sign in to see Your Feed',
+			hidden: authenticated,
+		},
+	]);
+</script>
+
+<svelte:head>
+	<title>Conduit</title>
+</svelte:head>
+
+<div>
+	<div class="flex flex-col items-center bg-emerald-500 px-4 py-10 text-white">
+		<h1 class="font-heading text-5xl leading-none drop-shadow-md">conduit</h1>
+		<p class="mt-3 text-2xl font-light leading-none">
+			A place to share your knowledge
+		</p>
+	</div>
+
+	<div class="mx-auto flex max-w-screen-lg items-start gap-8 px-4 py-6">
+		<section class="grow">
+			<nav>
+				<ul class="relative flex border-b border-neutral-200">
+					{#each links as link}
+						{#if !link.hidden}
+							<li>
+								<a
+									href={link.href}
+									class="-mb-px flex cursor-pointer items-center gap-0.5 border-b-2 border-transparent px-3 py-2 text-neutral-500 transition-colors duration-200 hover:text-neutral-600 data-selected:border-b-emerald-400 data-selected:text-emerald-500"
+									data-selected={dataAttr(link.active)}
+								>
+									{#if link.icon}
+										<svelte:component this={link.icon} class="h-4 w-4" />
+									{/if}
+
+									<span>{link.label}</span>
+								</a>
+							</li>
+						{/if}
+					{/each}
+				</ul>
+			</nav>
+
+			<div class="py-4">
+				<Post />
+				<Post />
+				<Post />
+			</div>
+
+			<ButtonGroup class="mx-auto mt-8 w-fit">
+				<Button variant="outline">1</Button>
+				<Button variant="outline" data-selected>2</Button>
+				<Button variant="outline">3</Button>
+			</ButtonGroup>
+		</section>
+
+		<section class="w-64 shrink-0 rounded bg-neutral-100 p-4">
+			<h2 class="tracking-wide">Popular Tags</h2>
+
+			<ul class="mt-2.5 flex flex-wrap gap-1">
+				{#each Array.from({length: 10}) as _}
+					<li
+						class="rounded-full bg-neutral-500 px-2 py-1 text-sm leading-none text-white transition-colors duration-200 hover:bg-neutral-600"
+					>
+						<a href="?tab=lorem">lorem</a>
+					</li>
+				{/each}
+			</ul>
+		</section>
+	</div>
+</div>
