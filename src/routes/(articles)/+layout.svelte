@@ -1,31 +1,26 @@
 <script lang="ts">
-	import ButtonGroup from '$lib/button-group.svelte';
-	import Button from '$lib/button.svelte';
+	import {page} from '$app/stores';
 	import {dataAttr} from '$lib/data-attr';
 	import HashIcon from '$lib/hash-icon.svelte';
-	import Post from '$lib/post.svelte';
 
-	let {data} = $props();
-	let authenticated = $derived(Boolean(data.user));
+	let {data, children} = $props();
+	let authenticated = $derived(!Boolean(data.user));
 
 	let links = $derived([
 		{
-			href: '/?tab=global-feed',
+			href: '/',
 			label: 'Global Feed',
-			active: true,
 		},
 		{
-			href: '?tab=your-feed',
+			href: '/your-feed',
 			label: 'Your Feed',
-			active: false,
 			hidden: !authenticated,
 		},
 		{
-			href: `?tab=lorem`,
 			icon: HashIcon,
-			label: 'lorem',
-			active: false,
-			hidden: !authenticated,
+			href: `/${data.params.tag}`,
+			label: data.params.tag,
+			hidden: !data.params.tag,
 		},
 		{
 			href: '/login',
@@ -57,7 +52,7 @@
 								<a
 									href={link.href}
 									class="-mb-px flex cursor-pointer items-center gap-0.5 border-b-2 border-transparent px-3 py-2 text-neutral-500 transition-colors duration-200 hover:text-neutral-600 data-selected:border-b-emerald-400 data-selected:text-emerald-500"
-									data-selected={dataAttr(link.active)}
+									data-selected={dataAttr(link.href === $page.url.pathname)}
 								>
 									{#if link.icon}
 										<svelte:component this={link.icon} class="h-4 w-4" />
@@ -71,17 +66,7 @@
 				</ul>
 			</nav>
 
-			<div class="py-4">
-				<Post />
-				<Post />
-				<Post />
-			</div>
-
-			<ButtonGroup class="mx-auto mt-8 w-fit">
-				<Button variant="outline">1</Button>
-				<Button variant="outline" data-selected>2</Button>
-				<Button variant="outline">3</Button>
-			</ButtonGroup>
+			{@render children()}
 		</section>
 
 		<section class="w-64 shrink-0 rounded bg-neutral-100 p-4">
@@ -92,7 +77,7 @@
 					<li
 						class="rounded-full bg-neutral-500 px-2 py-1 text-sm leading-none text-white transition-colors duration-200 hover:bg-neutral-600"
 					>
-						<a href="?tab=lorem">lorem</a>
+						<a href="/lorem">lorem</a>
 					</li>
 				{/each}
 			</ul>

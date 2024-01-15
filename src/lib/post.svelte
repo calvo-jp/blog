@@ -57,7 +57,7 @@
 				{#each Array.from({length: 5}) as _}
 					<li>
 						<a
-							href="/?tab=lorem"
+							href="/lorem"
 							class="rounded-full border border-neutral-200 px-2 py-0.5 text-xs leading-none text-emerald-500"
 						>
 							lorem

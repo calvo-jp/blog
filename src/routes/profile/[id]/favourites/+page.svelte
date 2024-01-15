@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Calvo JP | Conduit</title>
+	<title>Calvo JP's Favourites | Conduit</title>
 </svelte:head>
 
 <div class="space-y-4 py-4">
