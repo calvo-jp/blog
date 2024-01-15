@@ -26,6 +26,7 @@
 
 			if (e.key === 'Enter') {
 				e.preventDefault();
+				e.currentTarget.focus();
 
 				const v = inputValue;
 				const l = uniqBy([...value, v], (t) => t.toLowerCase());
@@ -38,7 +39,7 @@
 
 	{#if value.length > 0}
 		<ul class="mt-2 flex flex-wrap items-center gap-1">
-			{#each value as tag}
+			{#each value as tag (tag)}
 				<li
 					class="flex items-center gap-1 rounded-full bg-neutral-600 px-2 py-1 text-white"
 				>
@@ -46,11 +47,11 @@
 					<button
 						type="button"
 						class="flex"
-						onClick={() => {
+						onclick={() => {
 							const c = [...value];
 							const l = c.filter((i) => i !== tag);
 
-							onchange?.(l);
+							onchange(l);
 						}}
 					>
 						<XIcon class="h-3 w-3" />
