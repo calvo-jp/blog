@@ -1,21 +1,28 @@
 <script lang="ts">
-	import ButtonGroup from '$lib/button-group.svelte';
-	import Button from '$lib/button.svelte';
 	import Post from '$lib/post.svelte';
+
+	let {data} = $props();
 </script>
 
 <svelte:head>
-	<title>Conduit</title>
+	<title>Calvo JP | Conduit</title>
 </svelte:head>
 
-<div class="py-4">
-	<Post />
-	<Post />
-	<Post />
+<div class="space-y-4 py-4">
+	{#each data.posts as post}
+		<Post
+			id={post.id}
+			slug={post.slug}
+			title={post.title}
+			description={post.description}
+			content={post.content}
+			tags={post.tags}
+			createdAt={post.createdAt}
+			authorId={post.author.id}
+			authorName={post.author.name}
+			authorImage={post.author.image}
+			commentsCount={post._count.comments}
+			favouritesCount={post._count.favourites}
+		/>
+	{/each}
 </div>
-
-<ButtonGroup class="mx-auto mt-8 w-fit">
-	<Button variant="outline">1</Button>
-	<Button variant="outline" data-selected>2</Button>
-	<Button variant="outline">3</Button>
-</ButtonGroup>
