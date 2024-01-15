@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {enhance} from '$app/forms';
 	import HeartIcon from '$lib/heart-icon.svelte';
 </script>
 
@@ -21,7 +22,7 @@
 		</div>
 		<div class="grow" />
 
-		<form class="flex">
+		<form method="post" use:enhance class="flex">
 			<button
 				type="submit"
 				class="flex items-center gap-1 rounded border border-emerald-400 px-1.5 py-1 text-emerald-500 transition-colors duration-200 hover:bg-emerald-50/50"
@@ -56,7 +57,7 @@
 				{#each Array.from({length: 5}) as _}
 					<li>
 						<a
-							href="/popular/lorem"
+							href="/?tab=lorem"
 							class="rounded-full border border-neutral-200 px-2 py-0.5 text-xs leading-none text-emerald-500"
 						>
 							lorem

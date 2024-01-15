@@ -4,11 +4,12 @@
 	import XIcon from '$lib/x-icon.svelte';
 
 	interface Props {
+		name?: string;
 		value: string[];
 		onchange(value: string[]): void;
 	}
 
-	let {value, onchange} = $props<Props>();
+	let {name, value, onchange} = $props<Props>();
 
 	let inputValue = $state('');
 	let inputValid = $derived(inputValue.trim().length > 1);
@@ -60,4 +61,6 @@
 			{/each}
 		</ul>
 	{/if}
+
+	<input {name} type="hidden" value={value.join()} />
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {enhance} from '$app/forms';
 	import Button from '$lib/button.svelte';
 	import Input from '$lib/input.svelte';
 </script>
@@ -13,9 +14,9 @@
 		<a href="/register" class="text-emerald-500">Need an account?</a>
 	</div>
 	<div class="mt-3">
-		<form class="space-y-5" noValidate>
-			<Input size="lg" type="email" placeholder="Email" />
-			<Input size="lg" type="password" placeholder="Password" />
+		<form method="post" novalidate class="space-y-5" use:enhance>
+			<Input size="lg" name="email" type="email" placeholder="Email" />
+			<Input size="lg" name="password" type="password" placeholder="Password" />
 			<div class="flex justify-end">
 				<Button size="lg" type="submit" class="w-32">Sign In</Button>
 			</div>
