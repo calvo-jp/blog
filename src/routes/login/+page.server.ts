@@ -1,6 +1,49 @@
+import {prisma} from '$lib/server/prisma';
 import {redirect} from '@sveltejs/kit';
-import type {PageServerLoad} from './$types';
+import bcrypt from 'bcrypt';
+import * as v from 'valibot';
+import type {Actions, PageServerLoad} from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	if (event.locals.user) redirect(303, '/');
 };
+
+export const actions: Actions = {
+	async default(event) {
+		const form = await event.request.formData();
+		const parsed = v.safeParse(schema, {
+			email: form.get('email'),
+			password: form.get('password'),
+		});
+
+		if (!parsed.success) {
+			return {
+				error: parsed.issues[0].message,
+			};
+		}
+
+		const {email, password} = parsed.output;
+
+		const user = await prisma.user.findUnique({
+			where: {email},
+			select: {
+				id: true,
+				password: true,
+			},
+		});
+
+		if (user && (await bcrypt.compare(password, user.password))) {
+			event.cookies.set('user', user.id, {path: '/'});
+			redirect(303, '/');
+		}
+
+		return {
+			error: 'Invalid username or password',
+		};
+	},
+};
+
+const schema = v.object({
+	email: v.string([v.email()]),
+	password: v.string([v.minLength(8)]),
+});

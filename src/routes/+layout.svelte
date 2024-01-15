@@ -42,8 +42,8 @@
 			hidden: !authenticated,
 		},
 		{
-			href: '/profile/1',
-			label: 'JP Calvo',
+			href: `/profile/${data.user?.id}`,
+			label: data.user?.name,
 			hidden: !authenticated,
 		},
 	]);

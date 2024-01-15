@@ -3,15 +3,15 @@
 	import CogIcon from '$lib/cog-icon.svelte';
 	import {dataAttr} from '$lib/data-attr';
 
-	const {children} = $props();
+	const {data, children} = $props();
 
 	const links = [
 		{
-			href: '/profile/1',
+			href: `/profile/${data.profile.id}`,
 			label: 'Articles',
 		},
 		{
-			href: '/profile/1/favourites',
+			href: `/profile/${data.profile.id}/favourites`,
 			label: 'Favourites',
 		},
 	];
