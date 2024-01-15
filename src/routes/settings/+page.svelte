@@ -26,4 +26,17 @@
 			<Button type="submit" size="lg">Update Settings</Button>
 		</div>
 	</form>
+	<form
+		method="post"
+		action="?/logout"
+		use:enhance
+		class="mt-5 border-t border-neutral-200 pt-5"
+	>
+		<button
+			type="submit"
+			class="rounded border border-rose-500 px-4 py-2 text-rose-500 hover:bg-rose-50"
+		>
+			Or click here to logout.
+		</button>
+	</form>
 </div>
