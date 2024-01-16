@@ -43,7 +43,7 @@
 		</div>
 		<div class="grow" />
 
-		<form method="post" use:enhance class="flex">
+		<form method="post" action="/?/likePost" use:enhance class="flex">
 			<input type="hidden" value={data.id} />
 			<button
 				type="submit"

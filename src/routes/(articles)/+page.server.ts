@@ -1,6 +1,6 @@
 import {prisma} from '$lib/server/prisma';
 import * as v from 'valibot';
-import type {PageServerLoad} from './$types';
+import type {Actions, PageServerLoad} from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	const {page, size} = v.parse(querySchema, {
@@ -66,3 +66,8 @@ const querySchema = v.object({
 		return Number.isNaN(n) ? defaultSize : n < 1 ? defaultSize : n;
 	}),
 });
+
+export const actions:Actions={
+	async likePost(){},
+	async unlikePost(){}
+}
