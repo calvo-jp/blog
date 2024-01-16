@@ -1,7 +1,7 @@
 import {prisma} from '$lib/server/prisma';
 import type {PageServerLoad} from './$types';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (event) => {
 	const posts = await prisma.post.findMany({
 		select: {
 			id: true,
@@ -23,6 +23,11 @@ export const load: PageServerLoad = async () => {
 					comments: true,
 					favourites: true,
 				},
+			},
+		},
+		where: {
+			tags: {
+				has: event.params.tag,
 			},
 		},
 	});

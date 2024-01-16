@@ -20,6 +20,7 @@ export const actions: Actions = {
 
 		const form = await event.request.formData();
 		const parsed = v.safeParse(schema, {
+			bio: coalesce(form.get('bio')),
 			name: coalesce(form.get('name')),
 			email: coalesce(form.get('email')),
 			image: coalesce(form.get('image')),
@@ -34,7 +35,7 @@ export const actions: Actions = {
 		}
 
 		const {id} = user;
-		const {name, email, image, password} = parsed.output;
+		const {bio, name, email, image, password} = parsed.output;
 
 		if (email !== user.email && (await prisma.user.exists({email}))) {
 			return fail(400, {
@@ -46,6 +47,7 @@ export const actions: Actions = {
 		await prisma.user.update({
 			where: {id},
 			data: {
+				bio,
 				name,
 				email,
 				image,
@@ -69,6 +71,7 @@ function coalesce(value: unknown) {
 }
 
 const schema = v.object({
+	bio: v.optional(v.string([v.toTrimmed(), v.minLength(5), v.maxLength(150)])),
 	name: v.optional(v.string([v.toTrimmed(), v.minLength(2), v.maxLength(25)])),
 	email: v.optional(v.string([v.email()])),
 	image: v.optional(v.string([v.url()])),
