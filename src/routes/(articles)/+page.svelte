@@ -7,7 +7,7 @@
 	import Post from '$lib/post.svelte';
 
 	let {data} = $props();
-	let {pages, nextPage, prevPage} = $derived(
+	let {pages} = $derived(
 		paginate({
 			page: data.page,
 			size: data.size,
