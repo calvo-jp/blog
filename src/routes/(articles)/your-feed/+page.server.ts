@@ -1,14 +1,23 @@
 import {prisma} from '$lib/server/prisma';
+import type {Prisma} from '@prisma/client';
 import * as v from 'valibot';
 import type {PageServerLoad} from './$types';
 
 export const load: PageServerLoad = async (event) => {
+	const {user} = event.locals;
 	const {page, size} = v.parse(querySchema, {
 		page: event.url.searchParams.get('page'),
 		size: event.url.searchParams.get('size'),
 	});
 
-	const {user} = event.locals;
+	const where: Prisma.PostWhereInput = {
+		author: {
+			followers: {
+				has: user?.id,
+			},
+		},
+	};
+
 	const rows = await prisma.post.findMany({
 		select: {
 			id: true,
@@ -32,24 +41,22 @@ export const load: PageServerLoad = async (event) => {
 				},
 			},
 		},
-		where: {
-			author: {
-				followers: {
-					has: user?.id,
-				},
-			},
-		},
+
+		take: size,
+		skip: size * (page - 1),
+		where,
 		orderBy: {
 			createdAt: 'desc',
 		},
-		take: size,
-		skip: size * (page - 1),
 	});
+
+	const count = await prisma.post.count({where});
 
 	return {
 		rows,
 		page,
 		size,
+		count,
 	};
 };
 

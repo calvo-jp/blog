@@ -38,10 +38,13 @@ export const load: PageServerLoad = async (event) => {
 		skip: size * (page - 1),
 	});
 
+	const count = await prisma.post.count();
+
 	return {
 		rows,
 		page,
 		size,
+		count,
 	};
 };
 

@@ -1,4 +1,5 @@
 import {prisma} from '$lib/server/prisma';
+import type {Prisma} from '@prisma/client';
 import * as v from 'valibot';
 import type {PageServerLoad} from './$types';
 
@@ -7,6 +8,12 @@ export const load: PageServerLoad = async (event) => {
 		page: event.url.searchParams.get('page'),
 		size: event.url.searchParams.get('size'),
 	});
+
+	const where: Prisma.PostWhereInput = {
+		tags: {
+			has: event.params.tag,
+		},
+	};
 
 	const rows = await prisma.post.findMany({
 		select: {
@@ -31,19 +38,21 @@ export const load: PageServerLoad = async (event) => {
 				},
 			},
 		},
-		where: {
-			tags: {
-				has: event.params.tag,
-			},
-		},
 		take: size,
 		skip: size * (page - 1),
+		where,
+		orderBy: {
+			createdAt: 'desc',
+		},
 	});
+
+	const count = await prisma.post.count({where});
 
 	return {
 		rows,
 		page,
 		size,
+		count,
 	};
 };
 
