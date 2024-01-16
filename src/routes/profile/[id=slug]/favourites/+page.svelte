@@ -9,20 +9,20 @@
 </svelte:head>
 
 <div class="space-y-4 py-4">
-	{#each data.posts as post}
+	{#each data.rows as row}
 		<Post
-			id={post.id}
-			slug={post.slug}
-			title={post.title}
-			description={post.description}
-			content={post.content}
-			tags={post.tags}
-			createdAt={post.createdAt}
-			authorId={post.author.id}
-			authorName={post.author.name}
-			authorImage={post.author.image}
-			commentsCount={post._count.comments}
-			favouritesCount={post._count.favourites}
+			id={row.id}
+			slug={row.slug}
+			title={row.title}
+			description={row.description}
+			content={row.content}
+			tags={row.tags}
+			createdAt={row.createdAt}
+			authorId={row.author.id}
+			authorName={row.author.name}
+			authorImage={row.author.image}
+			commentsCount={row._count.comments}
+			favouritesCount={row._count.favourites}
 		/>
 	{/each}
 </div>
