@@ -5,7 +5,11 @@ export const load: PageServerLoad = async (event) => {
 	const {profile} = await event.parent();
 	const posts = await prisma.post.findMany({
 		where: {
-			authorId: profile.id,
+			favourites: {
+				some: {
+					id: profile.id,
+				},
+			},
 		},
 		select: {
 			id: true,
@@ -28,6 +32,9 @@ export const load: PageServerLoad = async (event) => {
 					favourites: true,
 				},
 			},
+		},
+		orderBy: {
+			createdAt: 'desc',
 		},
 	});
 

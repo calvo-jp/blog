@@ -58,8 +58,8 @@ export const actions: Actions = {
 };
 
 const schema = v.object({
-	title: v.string([v.toTrimmed(), v.minLength(4), v.maxLength(50)]),
-	description: v.string([v.toTrimmed(), v.minLength(4), v.maxLength(150)]),
+	title: v.string([v.toTrimmed(), v.minLength(4), v.maxLength(150)]),
+	description: v.string([v.toTrimmed(), v.minLength(4), v.maxLength(500)]),
 	content: v.string([v.minLength(1)]),
 	tags: v.transform(
 		v.string([v.toTrimmed(), v.minLength(4), v.maxLength(25)]),

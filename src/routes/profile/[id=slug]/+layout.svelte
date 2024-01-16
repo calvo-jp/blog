@@ -6,8 +6,9 @@
 	import RssIcon from '$lib/rss-icon.svelte';
 
 	const {data, children} = $props();
+	const ownProfile = $derived(data.user?.id === data.profile.id);
 
-	const links = [
+	const links = $derived([
 		{
 			href: `/profile/${data.profile.id}`,
 			label: 'Articles',
@@ -16,9 +17,7 @@
 			href: `/profile/${data.profile.id}/favourites`,
 			label: 'Favourites',
 		},
-	];
-
-	const ownProfile = $derived(data.user?.id === data.profile.id);
+	]);
 </script>
 
 <svelte:head>

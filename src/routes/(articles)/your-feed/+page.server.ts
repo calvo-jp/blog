@@ -2,6 +2,7 @@ import {prisma} from '$lib/server/prisma';
 import type {PageServerLoad} from './$types';
 
 export const load: PageServerLoad = async (event) => {
+	const {user} = event.locals;
 	const posts = await prisma.post.findMany({
 		select: {
 			id: true,
@@ -26,11 +27,14 @@ export const load: PageServerLoad = async (event) => {
 			},
 		},
 		where: {
-			favourites: {
-				some: {
-					userId: event.locals.user?.id,
+			author: {
+				followers: {
+					has: user?.id,
 				},
 			},
+		},
+		orderBy: {
+			createdAt: 'desc',
 		},
 	});
 

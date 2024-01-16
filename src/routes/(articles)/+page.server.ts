@@ -25,6 +25,9 @@ export const load: PageServerLoad = async () => {
 				},
 			},
 		},
+		orderBy: {
+			createdAt: 'desc',
+		},
 	});
 
 	return {posts};
