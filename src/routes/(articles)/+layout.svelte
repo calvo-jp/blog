@@ -79,7 +79,7 @@
 			<h2 class="tracking-wide">Popular Tags</h2>
 
 			<ul class="mt-2.5 flex flex-wrap gap-1">
-				{#each popularTags as tag}
+				{#each data.tags as { tag }}
 					<li
 						class="rounded-full bg-neutral-500 px-2 py-1 text-sm leading-none text-white transition-colors duration-200 hover:bg-neutral-600"
 					>
