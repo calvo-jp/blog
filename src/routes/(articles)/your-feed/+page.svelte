@@ -1,8 +1,7 @@
 <script lang="ts">
+	import {goto} from '$app/navigation';
 	import ButtonGroup from '$lib/button-group.svelte';
 	import Button from '$lib/button.svelte';
-	import ChevronLeftIcon from '$lib/chevron-left-icon.svelte';
-	import ChevronRightIcon from '$lib/chevron-right-icon.svelte';
 	import {dataAttr} from '$lib/data-attr';
 	import {paginate} from '$lib/paginate';
 	import Post from '$lib/post.svelte';
@@ -42,16 +41,16 @@
 
 {#if data.count > 0}
 	<ButtonGroup class="mx-auto mt-8 w-fit">
-		<Button variant="outline">
-			<ChevronLeftIcon class="h-5 w-5" />
-		</Button>
 		{#each pages as page}
-			<Button variant="outline" data-selected={dataAttr(page.selected)}>
+			<Button
+				variant="outline"
+				data-selected={dataAttr(page.selected)}
+				onclick={() => {
+					goto(`/your-feed?page=${page.value}&size=${data.size}`);
+				}}
+			>
 				{page.value}
 			</Button>
 		{/each}
-		<Button variant="outline">
-			<ChevronRightIcon class="h-5 w-5" />
-		</Button>
 	</ButtonGroup>
 {/if}

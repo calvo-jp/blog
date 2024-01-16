@@ -4,6 +4,7 @@ import * as v from 'valibot';
 import type {PageServerLoad} from './$types';
 
 export const load: PageServerLoad = async (event) => {
+	const {tag} = event.params;
 	const {page, size} = v.parse(querySchema, {
 		page: event.url.searchParams.get('page'),
 		size: event.url.searchParams.get('size'),
@@ -49,6 +50,7 @@ export const load: PageServerLoad = async (event) => {
 	const count = await prisma.post.count({where});
 
 	return {
+		tag,
 		rows,
 		page,
 		size,
