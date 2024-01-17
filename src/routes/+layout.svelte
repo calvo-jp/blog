@@ -18,31 +18,39 @@
 		{
 			href: '/',
 			label: 'Home',
+			active: ['/', '/your-feed', `/${$page.params.tag}`].includes(
+				$page.url.pathname,
+			),
 		},
 		{
 			href: '/login',
 			label: 'Sign In',
+			active: $page.url.pathname === '/login',
 			hidden: authenticated,
 		},
 		{
 			href: '/register',
 			label: 'Sign Up',
+			active: $page.url.pathname === '/register',
 			hidden: authenticated,
 		},
 		{
 			icon: PenPaperIcon,
 			href: '/editor',
 			label: 'New Post',
+			active: $page.url.pathname === '/editor',
 			hidden: !authenticated,
 		},
 		{
 			icon: CogIcon,
 			href: '/settings',
 			label: 'Settings',
+			active: $page.url.pathname === '/settings',
 			hidden: !authenticated,
 		},
 		{
 			href: `/profile/${data.user?.id}`,
+			active: $page.url.pathname === `/profile/${data.user?.id}`,
 			label: data.user?.name,
 			hidden: !authenticated,
 		},
@@ -64,7 +72,7 @@
 						<a
 							href={link.href}
 							class="flex items-center gap-1 text-neutral-500 transition-colors duration-200 hover:text-neutral-600 data-selected:text-neutral-700"
-							data-selected={dataAttr($page.url.pathname === link.href)}
+							data-selected={dataAttr(link.active)}
 						>
 							{#if link.icon}
 								<svelte:component this={link.icon} class="h-4 w-4" />
