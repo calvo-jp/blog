@@ -71,7 +71,7 @@
 					<li>
 						<a
 							href={link.href}
-							class="flex items-center gap-1 text-neutral-500 transition-colors duration-200 hover:text-neutral-600 data-selected:text-neutral-700"
+							class="flex items-center gap-1 text-gray-500 transition-colors duration-200 hover:text-gray-600 data-selected:text-gray-700"
 							data-selected={dataAttr(link.active)}
 						>
 							{#if link.icon}

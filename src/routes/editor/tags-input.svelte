@@ -42,7 +42,7 @@
 		<ul class="mt-2 flex flex-wrap items-center gap-1">
 			{#each value as tag (tag)}
 				<li
-					class="flex items-center gap-1 rounded-full bg-neutral-600 px-2 py-1 text-white"
+					class="flex items-center gap-1 rounded-full bg-gray-600 px-2 py-1 text-white"
 				>
 					<span class="text-sm leading-none">{tag}</span>
 					<button

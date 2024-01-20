@@ -6,7 +6,7 @@ export const inputRecipe = tv(
 		variants: {
 			variant: {
 				outline:
-					'rounded border border-neutral-200 transition-colors duration-200 placeholder:text-neutral-400 focus:border focus:border-emerald-300',
+					'rounded border border-gray-200 transition-colors duration-200 placeholder:text-gray-400 focus:border focus:border-emerald-300',
 			},
 			size: {
 				md: 'h-10 px-3 py-2',

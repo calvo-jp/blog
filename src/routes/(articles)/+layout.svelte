@@ -51,13 +51,13 @@
 	<div class="mx-auto flex max-w-screen-lg items-start gap-8 px-4 py-6">
 		<section class="grow">
 			<nav>
-				<ul class="relative flex border-b border-neutral-200">
+				<ul class="relative flex border-b border-gray-200">
 					{#each links as link}
 						{#if !link.hidden}
 							<li>
 								<a
 									href={link.href}
-									class="-mb-px flex cursor-pointer items-center gap-0.5 border-b-2 border-transparent px-3 py-2 text-neutral-500 transition-colors duration-200 hover:text-neutral-600 data-selected:border-b-emerald-400 data-selected:text-emerald-500"
+									class="-mb-px flex cursor-pointer items-center gap-0.5 border-b-2 border-transparent px-3 py-2 text-gray-500 transition-colors duration-200 hover:text-gray-600 data-selected:border-b-emerald-400 data-selected:text-emerald-500"
 									data-selected={dataAttr(link.href === $page.url.pathname)}
 								>
 									{#if link.icon}
@@ -75,13 +75,13 @@
 			{@render children()}
 		</section>
 
-		<section class="w-64 shrink-0 rounded bg-neutral-100 p-4">
+		<section class="w-64 shrink-0 rounded bg-gray-100 p-4">
 			<h2 class="tracking-wide">Popular Tags</h2>
 
 			<ul class="mt-2.5 flex flex-wrap gap-1">
 				{#each data.tags as { tag }}
 					<li
-						class="rounded-full bg-neutral-500 px-2 py-1 text-sm leading-none text-white transition-colors duration-200 hover:bg-neutral-600"
+						class="rounded-full bg-gray-500 px-2 py-1 text-sm leading-none text-white transition-colors duration-200 hover:bg-gray-600"
 					>
 						<a href="/{tag}">{tag}</a>
 					</li>

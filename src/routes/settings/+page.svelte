@@ -70,7 +70,7 @@
 		method="post"
 		action="?/logout"
 		use:enhance
-		class="mt-5 border-t border-neutral-200 pt-5"
+		class="mt-5 border-t border-gray-200 pt-5"
 	>
 		<button
 			type="submit"

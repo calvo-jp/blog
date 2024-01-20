@@ -12,8 +12,8 @@ export const buttonRecipe = tv(
 			variant: {
 				solid: 'bg-emerald-500 text-white hover:bg-emerald-600/90',
 				outline: [
-					'border border-neutral-200 text-emerald-500',
-					'hover:bg-neutral-50',
+					'border border-gray-200 text-emerald-500',
+					'hover:bg-gray-50',
 					'data-selected:border-emerald-500 data-selected:bg-emerald-500 data-selected:text-white',
 				],
 			},

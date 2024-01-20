@@ -14,7 +14,7 @@ Sed doloribus alias consectetur omnis occaecati ad placeat labore. Voluptate con
 </svelte:head>
 
 <div>
-	<section class="bg-neutral-700 py-10 text-white">
+	<section class="bg-gray-700 py-10 text-white">
 		<div class="mx-auto max-w-screen-lg px-4">
 			<h1 class="text-[2.8rem] font-semibold leading-[1.1] drop-shadow-md">
 				Try to calculate the JBOD firewall, maybe it will override the redundant
@@ -31,7 +31,7 @@ Sed doloribus alias consectetur omnis occaecati ad placeat labore. Voluptate con
 				</div>
 				<div>
 					<a href="/profile/1" class="leading-none">Maksim Esteban</a>
-					<div class="text-sm leading-none text-neutral-400">
+					<div class="text-sm leading-none text-gray-400">
 						{formatDate(new Date())}
 					</div>
 				</div>
@@ -40,7 +40,7 @@ Sed doloribus alias consectetur omnis occaecati ad placeat labore. Voluptate con
 	</section>
 
 	<section class="mx-auto max-w-screen-lg px-4">
-		<div class="border-b border-neutral-200 py-8">
+		<div class="border-b border-gray-200 py-8">
 			<article
 				class="prose prose-lg prose-neutral max-w-none prose-p:leading-normal"
 			>
@@ -50,7 +50,7 @@ Sed doloribus alias consectetur omnis occaecati ad placeat labore. Voluptate con
 			<ul class="mt-10 flex gap-1">
 				{#each Array.from({length: 5}) as _}
 					<li
-						class="rounded-full border border-neutral-200 px-2 py-1 text-sm leading-none text-neutral-400"
+						class="rounded-full border border-gray-200 px-2 py-1 text-sm leading-none text-gray-400"
 					>
 						lorem
 					</li>

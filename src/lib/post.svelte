@@ -19,7 +19,7 @@
 	}>();
 </script>
 
-<div class="border-b border-b-neutral-200 py-4 last:border-b-0">
+<div class="border-b border-b-gray-200 py-4 last:border-b-0">
 	<div class="flex items-start">
 		<div class="flex items-center gap-2 leading-none">
 			<div class="h-8 w-8 overflow-hidden rounded-full">
@@ -36,7 +36,7 @@
 				>
 					{data.authorName}
 				</a>
-				<div class="text-sm leading-none text-neutral-400">
+				<div class="text-sm leading-none text-gray-400">
 					{formatDate(data.createdAt)}
 				</div>
 			</div>
@@ -61,14 +61,14 @@
 	<h2 class="mt-4 text-2xl font-semibold leading-tight">
 		{data.title}
 	</h2>
-	<p class="leading-tight text-neutral-400">
+	<p class="leading-tight text-gray-400">
 		{data.description}
 	</p>
 
 	<div class="mt-4 flex items-center">
 		<a
 			href="/article/{data.slug}"
-			class="text-sm leading-none text-neutral-400 transition-colors duration-200 hover:text-emerald-500"
+			class="text-sm leading-none text-gray-400 transition-colors duration-200 hover:text-emerald-500"
 		>
 			Read more...
 		</a>
@@ -79,7 +79,7 @@
 					<li>
 						<a
 							href="/{tag}"
-							class="rounded-full border border-neutral-200 px-2 py-0.5 text-xs leading-none text-emerald-500"
+							class="rounded-full border border-gray-200 px-2 py-0.5 text-xs leading-none text-emerald-500"
 						>
 							{tag}
 						</a>
