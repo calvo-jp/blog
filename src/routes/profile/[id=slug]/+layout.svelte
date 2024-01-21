@@ -59,7 +59,8 @@
 				>
 					<button
 						type="submit"
-						class="flex items-center gap-1 rounded border border-gray-400 px-2 py-1.5 text-gray-500 transition-colors duration-200 hover:bg-gray-200/50 data-selected:border-emerald-400 data-selected:hover:bg-emerald-50/50"
+						class="flex items-center gap-1 rounded border border-gray-400 px-2 py-1.5 text-gray-500 transition-colors duration-200 hover:bg-gray-200/50 disabled:cursor-not-allowed data-selected:border-emerald-400 data-selected:hover:bg-emerald-50/50"
+						disabled={!data.user}
 						data-selected={dataAttr(followed)}
 					>
 						<RssIcon class="h-4 w-4" />

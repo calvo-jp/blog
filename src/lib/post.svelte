@@ -56,7 +56,8 @@
 			<input type="hidden" name="postId" value={data.id} />
 			<button
 				type="submit"
-				class="flex items-center gap-1 rounded border border-emerald-400 px-1.5 py-1 text-emerald-500 transition-colors duration-200 hover:bg-emerald-50/50"
+				disabled={!$page.data.user}
+				class="flex items-center gap-1 rounded border border-emerald-400 px-1.5 py-1 text-emerald-500 transition-colors duration-200 hover:bg-emerald-50/50 disabled:cursor-not-allowed"
 			>
 				{#if favourited}
 					<span class="sr-only">Remove from favourites</span>
