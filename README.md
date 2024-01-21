@@ -1,4 +1,4 @@
-# [WIP] Blog
+# Blog
 
 [Conduit](https://realworld.svelte.dev/) clone. The purpose of this app is to benchmark [SvelteKit](https://kit.svelte.dev/) and [React RSC](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 
