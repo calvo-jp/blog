@@ -1,6 +1,5 @@
 import {prisma} from '$lib/server/prisma';
 import {fail, redirect} from '@sveltejs/kit';
-import bcrypt from 'bcrypt';
 import * as v from 'valibot';
 import type {Actions, PageServerLoad} from './$types';
 
@@ -37,7 +36,7 @@ export const actions: Actions = {
 			data: {
 				name,
 				email,
-				password: await bcrypt.hash(password, await bcrypt.genSalt(8)),
+				password,
 			},
 			select: {
 				id: true,
