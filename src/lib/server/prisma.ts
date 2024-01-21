@@ -7,13 +7,9 @@ import bcrypt from 'bcrypt';
 export const prisma = new PrismaClient().$extends({
 	model: {
 		$allModels: {
-			async exists<T>(
-				this: T,
-				where: Prisma.Args<T, 'findFirst'>['where'],
-			): Promise<boolean> {
-				const context = Prisma.getExtensionContext(this);
-				const result = await (context as any).findFirst({where});
-
+			async exists<T>(this: T, where: Prisma.Args<T, 'findFirst'>['where']) {
+				const context = Prisma.getExtensionContext(this) as any;
+				const result = await context.findFirst({where});
 				return result !== null;
 			},
 		},
