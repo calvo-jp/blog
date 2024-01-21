@@ -13,7 +13,7 @@ export const load: PageServerLoad = async (event) => {
 		where: {
 			favourites: {
 				some: {
-					id: profile.id,
+					userId: profile.id,
 				},
 			},
 		},

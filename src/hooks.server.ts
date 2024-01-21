@@ -14,6 +14,7 @@ export const handle: Handle = async ({event, resolve}) => {
 					name: true,
 					email: true,
 					image: true,
+					followers: true,
 				},
 			});
 

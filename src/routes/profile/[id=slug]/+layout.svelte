@@ -7,6 +7,9 @@
 
 	const {data, children} = $props();
 	const ownProfile = $derived(data.user?.id === data.profile.id);
+	const followed = $derived(
+		data.user ? data.profile.followers.includes(data.user.id) : false,
+	);
 
 	const links = $derived([
 		{
@@ -46,13 +49,23 @@
 					<span class="text-sm leading-none">Edit Profile Settings</span>
 				</a>
 			{:else}
-				<form method="post" class="flex items-start self-end" use:enhance>
+				<form
+					method="post"
+					action={followed
+						? `/profile/${data.profile.id}?/unfollow`
+						: `/profile/${data.profile.id}?/follow`}
+					class="flex items-start self-end"
+					use:enhance
+				>
 					<button
 						type="submit"
-						class="flex items-center gap-1 rounded border border-gray-400 px-2 py-1.5 text-gray-500 transition-colors duration-200 hover:bg-gray-200/50"
+						class="flex items-center gap-1 rounded border border-gray-400 px-2 py-1.5 text-gray-500 transition-colors duration-200 hover:bg-gray-200/50 data-selected:border-emerald-400 data-selected:hover:bg-emerald-50/50"
+						data-selected={dataAttr(followed)}
 					>
 						<RssIcon class="h-4 w-4" />
-						<span class="text-sm leading-none">Follow</span>
+						<span class="text-sm leading-none">
+							{followed ? 'Unfollow' : 'Follow'}
+						</span>
 					</button>
 				</form>
 			{/if}

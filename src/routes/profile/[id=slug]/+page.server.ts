@@ -1,4 +1,5 @@
 import {prisma} from '$lib/server/prisma';
+import {fail} from '@sveltejs/kit';
 import * as v from 'valibot';
 import type {Actions, PageServerLoad} from './$types';
 
@@ -74,6 +75,74 @@ const querySchema = v.object({
 });
 
 export const actions: Actions = {
-	async follow() {},
-	async unfollow() {},
+	async follow(event) {
+		const followerId = event.locals.user?.id;
+		const followeeId = event.params.id;
+
+		if (!followerId) {
+			return fail(401, {
+				success: false,
+				message: 'Not authorized',
+			});
+		}
+
+		await prisma.user.update({
+			data: {
+				followers: {
+					push: [followerId],
+				},
+			},
+			where: {
+				id: followeeId,
+			},
+		});
+
+		return {
+			success: true,
+			message: 'Followed',
+		};
+	},
+	async unfollow(event) {
+		const followeeId = event.params.id;
+		const followerId = event.locals.user?.id;
+
+		if (!followerId) {
+			return fail(401, {
+				success: false,
+				message: 'Not authorized',
+			});
+		}
+
+		const followee = await prisma.user.findUnique({
+			where: {
+				id: followeeId,
+			},
+			select: {
+				followers: true,
+			},
+		});
+
+		if (!followee) {
+			return fail(400, {
+				success: false,
+				message: 'Account not found',
+			});
+		}
+
+		await prisma.user.update({
+			data: {
+				followers: {
+					set: followee.followers.filter((id) => id !== followerId),
+				},
+			},
+			where: {
+				id: followeeId,
+			},
+		});
+
+		return {
+			success: true,
+			message: 'Unfollowed',
+		};
+	},
 };
