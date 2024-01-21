@@ -1,22 +1,26 @@
 <script lang="ts">
 	import {enhance} from '$app/forms';
+	import {page} from '$app/stores';
 	import HeartIcon from '$lib/heart-icon.svelte';
 	import {formatDate} from './format-date';
+	import HeartFilledIcon from './heart-filled-icon.svelte';
 
 	let {...data} = $props<{
 		id: string;
 		slug: string;
 		title: string;
 		description: string;
-		content: string;
 		tags: string[];
 		createdAt: Date;
 		authorId: string;
 		authorName: string;
 		authorImage: string | null;
 		commentsCount: number;
+		favrouritedBy: string[];
 		favouritesCount: number;
 	}>();
+
+	let favourited = $derived(data.favrouritedBy.includes($page.data.user?.id));
 </script>
 
 <div class="border-b border-b-gray-200 py-4 last:border-b-0">
@@ -43,14 +47,25 @@
 		</div>
 		<div class="grow" />
 
-		<form method="post" action="/?/likePost" use:enhance class="flex">
-			<input type="hidden" value={data.id} />
+		<form
+			method="post"
+			action={favourited ? '/?/removeFromFavourites' : '/?/addToFavourites'}
+			use:enhance
+			class="flex"
+		>
+			<input type="hidden" name="postId" value={data.id} />
 			<button
 				type="submit"
 				class="flex items-center gap-1 rounded border border-emerald-400 px-1.5 py-1 text-emerald-500 transition-colors duration-200 hover:bg-emerald-50/50"
 			>
-				<span class="sr-only">Add to favourites</span>
-				<HeartIcon class="h-3 w-3" />
+				{#if favourited}
+					<span class="sr-only">Remove from favourites</span>
+					<HeartFilledIcon class="h-3 w-3" />
+				{:else}
+					<span class="sr-only">Add to favourites</span>
+					<HeartIcon class="h-3 w-3" />
+				{/if}
+
 				<span class="text-sm leading-none">
 					{data.favouritesCount}
 				</span>

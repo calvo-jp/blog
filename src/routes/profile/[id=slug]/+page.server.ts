@@ -34,6 +34,11 @@ export const load: PageServerLoad = async (event) => {
 					favourites: true,
 				},
 			},
+			favourites: {
+				select: {
+					userId: true,
+				},
+			},
 		},
 		orderBy: {
 			createdAt: 'desc',

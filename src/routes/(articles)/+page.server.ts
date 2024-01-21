@@ -1,4 +1,5 @@
 import {prisma} from '$lib/server/prisma';
+import {fail} from '@sveltejs/kit';
 import * as v from 'valibot';
 import type {Actions, PageServerLoad} from './$types';
 
@@ -14,7 +15,6 @@ export const load: PageServerLoad = async (event) => {
 			slug: true,
 			title: true,
 			description: true,
-			content: true,
 			tags: true,
 			createdAt: true,
 			author: {
@@ -28,6 +28,11 @@ export const load: PageServerLoad = async (event) => {
 				select: {
 					comments: true,
 					favourites: true,
+				},
+			},
+			favourites: {
+				select: {
+					userId: true,
 				},
 			},
 		},
@@ -67,7 +72,75 @@ const querySchema = v.object({
 	}),
 });
 
-export const actions:Actions={
-	async likePost(){},
-	async unlikePost(){}
-}
+export const actions: Actions = {
+	async addToFavourites(event) {
+		const {user} = event.locals;
+
+		if (!user)
+			return fail(401, {
+				success: false,
+				message: 'Not authorized',
+			});
+
+		const form = await event.request.formData();
+		const postId = form.get('postId')?.toString();
+		const userId = user.id;
+
+		if (!postId) {
+			return fail(400, {
+				success: false,
+				message: "Missing 'postId'",
+			});
+		}
+
+		const exists = await prisma.favourite.exists({AND: {userId, postId}});
+
+		if (!exists) {
+			await prisma.favourite.create({
+				data: {
+					userId,
+					postId,
+				},
+			});
+		}
+
+		return {
+			success: true,
+			message: 'Added post to favourites',
+		};
+	},
+	async removeFromFavourites(event) {
+		const {user} = event.locals;
+
+		if (!user)
+			return fail(401, {
+				success: false,
+				message: 'Not authorized',
+			});
+
+		const form = await event.request.formData();
+		const postId = form.get('postId')?.toString();
+		const userId = user.id;
+
+		if (!postId) {
+			return fail(400, {
+				success: false,
+				message: "Missing 'postId'",
+			});
+		}
+
+		await prisma.favourite.deleteMany({
+			where: {
+				AND: {
+					userId,
+					postId,
+				},
+			},
+		});
+
+		return {
+			success: true,
+			message: 'Removed post post favourites',
+		};
+	},
+};

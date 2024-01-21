@@ -40,8 +40,12 @@ export const load: PageServerLoad = async (event) => {
 					favourites: true,
 				},
 			},
+			favourites: {
+				select: {
+					userId: true,
+				},
+			},
 		},
-
 		take: size,
 		skip: size * (page - 1),
 		where,
