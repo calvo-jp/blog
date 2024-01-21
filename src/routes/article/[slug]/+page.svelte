@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {formatDate} from '$lib/format-date';
 	import AddComment from './add-comment.svelte';
-	import Comments from './comments.svelte';
+	import Comment from './comment.svelte';
 
 	let {data} = $props();
 </script>
@@ -58,7 +58,21 @@
 	</section>
 
 	<section class="mx-auto mt-12 max-w-screen-md space-y-3 px-4">
-		<AddComment />
-		<Comments />
+		{#if data.user}
+			<AddComment />
+		{/if}
+
+		{#await data.comments then comments}
+			{#each comments as comment}
+				<Comment
+					id={comment.id}
+					content={comment.content}
+					createdAt={comment.createdAt}
+					authorId={comment.user.id}
+					authorName={comment.user.name}
+					authorImage={comment.user.image}
+				/>
+			{/each}
+		{/await}
 	</section>
 </div>
