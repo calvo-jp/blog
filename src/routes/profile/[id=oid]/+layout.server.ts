@@ -9,6 +9,7 @@ export const load: LayoutServerLoad = async (event) => {
 		where: {id},
 		select: {
 			id: true,
+			bio: true,
 			name: true,
 			email: true,
 			image: true,

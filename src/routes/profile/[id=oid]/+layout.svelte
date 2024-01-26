@@ -26,6 +26,18 @@
 
 <svelte:head>
 	<title>{data.profile.name} | Conduit</title>
+
+	<meta name="title" content={data.profile.name} />
+	<meta property="og:title" content={data.profile.name} />
+
+	{#if data.profile.bio}
+		<meta name="description" content={data.profile.bio} />
+		<meta property="og:description" content={data.profile.bio} />
+	{/if}
+
+	{#if data.profile.image}
+		<meta property="og:image" content={data.profile.image} />
+	{/if}
 </svelte:head>
 
 <div>
