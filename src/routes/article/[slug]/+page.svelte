@@ -9,6 +9,12 @@
 
 <svelte:head>
 	<title>{data.post.title} | Conduit</title>
+
+	<meta name="title" content={data.post.title} />
+	<meta name="description" content={data.post.description} />
+
+	<meta property="og:title" content={data.post.title} />
+	<meta property="og:description" content={data.post.description} />
 </svelte:head>
 
 <div>
