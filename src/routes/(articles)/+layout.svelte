@@ -28,8 +28,6 @@
 			hidden: !$page.params.tag,
 		},
 	]);
-
-	let popularTags = Array.from({length: 10}).map(() => 'lorem');
 </script>
 
 <svelte:head>
