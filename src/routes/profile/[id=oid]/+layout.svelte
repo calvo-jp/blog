@@ -25,7 +25,7 @@
 </script>
 
 <svelte:head>
-	<title>Calvo JP | Conduit</title>
+	<title>{data.profile.name} | Conduit</title>
 </svelte:head>
 
 <div>

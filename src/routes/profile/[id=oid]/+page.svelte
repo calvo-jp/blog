@@ -4,10 +4,6 @@
 	let {data} = $props();
 </script>
 
-<svelte:head>
-	<title>Calvo JP | Conduit</title>
-</svelte:head>
-
 <div class="space-y-4 py-4">
 	{#each data.rows as row}
 		<Post

@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>Calvo JP's Favourite | Conduit</title>
+	<title>{data.profile.name}'s Favourites | Conduit</title>
 </svelte:head>
 
 <div class="space-y-4 py-4">
