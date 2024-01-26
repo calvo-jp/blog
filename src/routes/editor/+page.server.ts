@@ -1,6 +1,6 @@
 import {prisma} from '$lib/server/prisma';
-import {slugify} from '$lib/slugify';
 import {fail, redirect} from '@sveltejs/kit';
+import slugify from 'slugify';
 import * as v from 'valibot';
 import type {Actions, PageServerLoad} from './$types';
 
