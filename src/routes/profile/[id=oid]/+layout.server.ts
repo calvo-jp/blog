@@ -11,6 +11,7 @@ export const load: LayoutServerLoad = async (event) => {
 			id: true,
 			name: true,
 			email: true,
+			image: true,
 			followers: true,
 		},
 	});

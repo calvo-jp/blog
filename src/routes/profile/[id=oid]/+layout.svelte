@@ -4,6 +4,7 @@
 	import CogIcon from '$lib/cog-icon.svelte';
 	import {dataAttr} from '$lib/data-attr';
 	import RssIcon from '$lib/rss-icon.svelte';
+	import smiley from '$lib/smiley.jpeg';
 
 	const {data, children} = $props();
 	const ownProfile = $derived(data.user?.id === data.profile.id);
@@ -33,7 +34,7 @@
 			class="mx-auto flex max-w-screen-md flex-col items-center justify-center pb-6 pt-10"
 		>
 			<div class="h-24 w-24 overflow-hidden rounded-full">
-				<img src="/smiley.jpeg" alt="" class="h-full w-full" />
+				<img src={data.profile.image ?? smiley} alt="" class="h-full w-full" />
 			</div>
 
 			<h2 class="mt-5 text-3xl font-bold text-gray-700">
