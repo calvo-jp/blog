@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {formatDate} from '$lib/format-date';
+	import smiley from '$lib/smiley.jpeg';
 	import AddComment from './add-comment.svelte';
 	import Comment from './comment.svelte';
 
@@ -20,7 +21,7 @@
 			<div class="mt-8 flex items-center gap-2 leading-none">
 				<div class="h-8 w-8 overflow-hidden rounded-full">
 					<img
-						src={data.post.author.image ?? '/smiley.jpeg'}
+						src={data.post.author.image ?? smiley}
 						alt=""
 						class="h-full w-full"
 					/>

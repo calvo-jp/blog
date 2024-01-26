@@ -2,6 +2,7 @@
 	import {enhance} from '$app/forms';
 	import {page} from '$app/stores';
 	import Button from '$lib/button.svelte';
+	import smiley from '$lib/smiley.jpeg';
 </script>
 
 <form
@@ -21,11 +22,7 @@
 
 	<div class="flex items-center border-t border-gray-200 bg-gray-50 px-5 py-3">
 		<div class="h-8 w-8 overflow-hidden rounded-full">
-			<img
-				src={$page.data.user.image ?? '/smiley.jpeg'}
-				alt=""
-				class="h-full w-full"
-			/>
+			<img src={$page.data.user.image ?? smiley} alt="" class="h-full w-full" />
 		</div>
 		<div class="grow" />
 		<Button size="sm" type="submit" class="font-bold">Post Comment</Button>

@@ -2,6 +2,7 @@
 	import {enhance} from '$app/forms';
 	import {page} from '$app/stores';
 	import {formatDate} from '$lib/format-date';
+	import smiley from '$lib/smiley.jpeg';
 	import TrashIcon from '$lib/trash-icon.svelte';
 
 	let {...data} = $props<{
@@ -21,11 +22,7 @@
 		class="flex items-center gap-1.5 border-t border-gray-200 bg-gray-50 px-5 py-3"
 	>
 		<div class="h-5 w-5 overflow-hidden rounded-full">
-			<img
-				src={data.authorImage ?? '/smiley.jpeg'}
-				alt=""
-				class="h-full w-full"
-			/>
+			<img src={data.authorImage ?? smiley} alt="" class="h-full w-full" />
 		</div>
 		<a
 			href="/profile/{data.authorId}"

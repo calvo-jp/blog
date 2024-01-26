@@ -2,6 +2,7 @@
 	import {enhance} from '$app/forms';
 	import {page} from '$app/stores';
 	import HeartIcon from '$lib/heart-icon.svelte';
+	import smiley from '$lib/smiley.jpeg';
 	import {formatDate} from './format-date';
 	import HeartFilledIcon from './heart-filled-icon.svelte';
 
@@ -27,11 +28,7 @@
 	<div class="flex items-start">
 		<div class="flex items-center gap-2 leading-none">
 			<div class="h-8 w-8 overflow-hidden rounded-full">
-				<img
-					src={data.authorImage ?? '/smiley.jpeg'}
-					alt=""
-					class="h-full w-full"
-				/>
+				<img src={data.authorImage ?? smiley} alt="" class="h-full w-full" />
 			</div>
 			<div>
 				<a
