@@ -1,21 +1,30 @@
-// See https://kit.svelte.dev/docs/types#app
-// for information about these interfaces
+import type {User} from '@prisma/client';
+
+/* prettier-ignore */
+type CurrentUser = Pick<
+	User,
+	| 'id'
+	| 'bio'
+	| 'name'
+	| 'email'
+	| 'image'
+	| 'createdAt'
+	| 'followers'
+>;
+
 declare global {
 	namespace App {
 		// interface Error {}
 
 		interface Locals {
-			user: null | {
-				id: string;
-				bio: string | null;
-				name: string;
-				email: string;
-				image: string | null;
-				followers: string[];
-			};
+			user: CurrentUser | null;
 		}
 
-		// interface PageData {}
+		interface PageData {
+			user: CurrentUser | null;
+			[key: string]: unknown;
+		}
+
 		// interface PageState {}
 		// interface Platform {}
 	}

@@ -21,7 +21,9 @@
 		favouritesCount: number;
 	}>();
 
-	let favourited = $derived(data.favrouritedBy.includes($page.data.user?.id));
+	let favourited = $derived(
+		$page.data.user ? data.favrouritedBy.includes($page.data.user.id) : false,
+	);
 </script>
 
 <div class="border-b border-b-gray-200 py-4 last:border-b-0">
