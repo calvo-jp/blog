@@ -14,7 +14,10 @@ type CurrentUser = Pick<
 
 declare global {
 	namespace App {
-		// interface Error {}
+		interface Error {
+			code?: string;
+			message: string;
+		}
 
 		interface Locals {
 			user: CurrentUser | null;
