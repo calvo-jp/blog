@@ -25,7 +25,6 @@ declare global {
 
 		interface PageData {
 			user: CurrentUser | null;
-			[key: string]: unknown;
 		}
 
 		// interface PageState {}
