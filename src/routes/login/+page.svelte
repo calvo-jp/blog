@@ -1,7 +1,10 @@
 <script lang="ts">
 	import {enhance} from '$app/forms';
+	import Alert from '$lib/alert.svelte';
 	import Button from '$lib/button.svelte';
 	import Input from '$lib/input.svelte';
+
+	let {form} = $props();
 </script>
 
 <svelte:head>
@@ -14,6 +17,10 @@
 		<a href="/register" class="text-emerald-500">Need an account?</a>
 	</div>
 	<div class="mt-3">
+		{#if form && !form.success}
+			<Alert status="error" class="mb-5">{form.message}</Alert>
+		{/if}
+
 		<form method="post" novalidate class="space-y-5" use:enhance>
 			<Input size="lg" name="email" type="email" placeholder="Email" />
 			<Input size="lg" name="password" type="password" placeholder="Password" />
