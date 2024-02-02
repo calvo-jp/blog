@@ -70,11 +70,11 @@
 		method="post"
 		action="?/logout"
 		use:enhance
-		class="mt-5 border-t border-gray-200 pt-5"
+		class="mt-5 border-t border-gray-200 pt-5 dark:border-neutral-800"
 	>
 		<button
 			type="submit"
-			class="rounded border border-rose-500 px-4 py-2 text-rose-500 hover:bg-rose-50"
+			class="rounded border border-rose-500 px-4 py-2 text-rose-500 hover:bg-rose-50 dark:border-rose-700 dark:text-rose-700 dark:hover:bg-rose-900/10"
 		>
 			Or click here to logout.
 		</button>

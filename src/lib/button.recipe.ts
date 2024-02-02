@@ -10,11 +10,12 @@ export const buttonRecipe = tv(
 				lg: 'h-12 min-w-12 px-4 py-3 text-lg leading-none',
 			},
 			variant: {
-				solid: 'bg-emerald-500 text-white hover:bg-emerald-600/90',
+				solid:
+					'bg-emerald-500 text-white hover:bg-emerald-600/90 dark:bg-emerald-800/50 dark:hover:bg-emerald-700/80',
 				outline: [
 					'border border-gray-200 text-emerald-500',
-					'hover:bg-gray-50',
-					'data-selected:border-emerald-500 data-selected:bg-emerald-500 data-selected:text-white',
+					'hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-800/25',
+					'data-selected:border-emerald-500 data-selected:bg-emerald-500 data-selected:text-white dark:data-selected:border-emerald-800/50 dark:data-selected:bg-emerald-800/50 dark:data-selected:hover:border-emerald-700/80 dark:data-selected:hover:bg-emerald-700/80',
 				],
 			},
 		},

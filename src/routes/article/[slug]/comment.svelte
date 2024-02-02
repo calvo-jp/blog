@@ -15,19 +15,24 @@
 	}>();
 </script>
 
-<div class="overflow-hidden rounded border border-gray-200">
-	<p class="p-5 text-gray-600">{content}</p>
+<div
+	class="overflow-hidden rounded border border-gray-200 dark:border-neutral-800"
+>
+	<p class="p-5 text-gray-600 dark:text-neutral-500">{content}</p>
 
 	<div
-		class="flex items-center gap-1.5 border-t border-gray-200 bg-gray-50 px-5 py-3"
+		class="flex items-center gap-1.5 border-t border-gray-200 bg-gray-50 px-5 py-3 dark:border-neutral-800 dark:bg-neutral-800/30"
 	>
 		<div class="h-5 w-5 overflow-hidden rounded-full">
 			<img src={authorImage ?? smiley} alt="" class="h-full w-full" />
 		</div>
-		<a href="/profile/{authorId}" class="text-sm leading-none text-emerald-400">
+		<a
+			href="/profile/{authorId}"
+			class="text-sm leading-none text-emerald-400 dark:text-emerald-500"
+		>
 			{authorName}
 		</a>
-		<div class="text-sm leading-none text-gray-400">
+		<div class="text-sm leading-none text-gray-400 dark:text-neutral-600">
 			{formatDate(createdAt)}
 		</div>
 		<div class="grow" />
@@ -40,7 +45,11 @@
 				use:enhance
 			>
 				<input type="hidden" name="id" value={id} />
-				<button type="submit" class="text-gray-500" title="Delete Comment">
+				<button
+					type="submit"
+					class="text-gray-500 dark:text-neutral-600"
+					title="Delete Comment"
+				>
 					<TrashIcon class="h-4 w-4" />
 					<span class="sr-only">Delete comment</span>
 				</button>

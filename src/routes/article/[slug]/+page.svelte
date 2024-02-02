@@ -18,7 +18,7 @@
 </svelte:head>
 
 <div>
-	<section class="bg-gray-700 py-10 text-white">
+	<section class="bg-gray-700 py-10 text-white dark:bg-neutral-800/50">
 		<div class="mx-auto max-w-screen-lg px-4">
 			<h1 class="text-[2.8rem] font-semibold leading-[1.1] drop-shadow-md">
 				{data.post.title}
@@ -36,7 +36,9 @@
 					<a href="/profile/{data.post.author.id}" class="leading-none">
 						{data.post.author.name}
 					</a>
-					<div class="mt-px text-sm leading-none text-gray-400">
+					<div
+						class="mt-px text-sm leading-none text-gray-400 dark:text-neutral-600"
+					>
 						{formatDate(data.post.createdAt)}
 					</div>
 				</div>
@@ -45,9 +47,9 @@
 	</section>
 
 	<section class="mx-auto max-w-screen-lg px-4">
-		<div class="border-b border-gray-200 py-8">
+		<div class="border-b border-gray-200 py-8 dark:border-neutral-800">
 			<article
-				class="prose prose-lg prose-neutral max-w-none prose-p:leading-normal"
+				class="prose prose-lg prose-gray max-w-none dark:prose-neutral dark:prose-invert prose-p:leading-normal"
 			>
 				{@html data.post.content}
 			</article>
@@ -55,7 +57,7 @@
 			<ul class="mt-10 flex gap-1">
 				{#each data.post.tags as tag}
 					<li
-						class="rounded-full border border-gray-200 px-2 py-1 text-sm leading-none text-gray-400"
+						class="rounded-full border border-gray-200 px-2 py-1 text-sm leading-none text-gray-400 dark:border-neutral-800 dark:text-neutral-600"
 					>
 						{tag}
 					</li>

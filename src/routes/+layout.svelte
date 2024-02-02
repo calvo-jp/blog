@@ -61,7 +61,11 @@
 	class="mx-auto flex max-w-screen-lg items-center justify-between gap-5 px-4 py-3"
 >
 	<a href="/">
-		<h2 class="font-heading text-2xl font-bold text-emerald-500">conduit</h2>
+		<h2
+			class="font-heading text-2xl font-bold text-emerald-500 dark:text-emerald-700"
+		>
+			conduit
+		</h2>
 	</a>
 
 	<nav>
@@ -71,7 +75,7 @@
 					<li>
 						<a
 							href={link.href}
-							class="flex items-center gap-1 text-gray-500 transition-colors duration-200 hover:text-gray-600 data-selected:text-gray-700"
+							class="flex items-center gap-1 text-gray-500 transition-colors duration-200 hover:text-gray-600 data-selected:text-gray-700 dark:text-neutral-600 dark:hover:text-neutral-500 dark:data-selected:text-neutral-400"
 							data-selected={dataAttr(link.active)}
 						>
 							{#if link.icon}
