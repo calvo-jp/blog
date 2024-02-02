@@ -2,7 +2,6 @@
 	import LaptopIcon from '$lib/laptop-icon.svelte';
 	import MoonIcon from '$lib/moon-icon.svelte';
 	import SunIcon from '$lib/sun-icon.svelte';
-
 	import {themeStore} from '$lib/theme';
 </script>
 
