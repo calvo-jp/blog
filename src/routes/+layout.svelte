@@ -3,6 +3,7 @@
 	import CogIcon from '$lib/cog-icon.svelte';
 	import {dataAttr} from '$lib/data-attr';
 	import PenPaperIcon from '$lib/pen-paper-icon.svelte';
+	import {Theme} from '$lib/theme';
 	import '@fontsource/source-sans-3/300.css';
 	import '@fontsource/source-sans-3/400.css';
 	import '@fontsource/source-sans-3/500.css';
@@ -10,6 +11,7 @@
 	import '@fontsource/source-sans-3/700.css';
 	import '@fontsource/titillium-web/700.css';
 	import '../app.css';
+	import ThemeToggle from './theme-toggle.svelte';
 
 	let {children, data} = $props();
 	let authenticated = $derived(Boolean(data.user));
@@ -57,6 +59,7 @@
 	]);
 </script>
 
+<Theme />
 <header
 	class="mx-auto flex max-w-screen-lg items-center justify-between gap-5 px-4 py-3"
 >
@@ -68,7 +71,7 @@
 		</h2>
 	</a>
 
-	<nav>
+	<nav class="flex items-center gap-3">
 		<ul class="flex items-center gap-3">
 			{#each links as link}
 				{#if !link.hidden}
@@ -88,6 +91,8 @@
 				{/if}
 			{/each}
 		</ul>
+
+		<ThemeToggle />
 	</nav>
 </header>
 

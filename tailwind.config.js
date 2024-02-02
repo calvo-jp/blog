@@ -2,7 +2,7 @@ import {withTV} from 'tailwind-variants/transformer';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default withTV({
-	darkMode: 'media',
+	darkMode: 'class',
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
