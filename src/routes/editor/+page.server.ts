@@ -58,11 +58,23 @@ export const actions: Actions = {
 };
 
 const schema = v.object({
-	title: v.string([v.toTrimmed(), v.minLength(4), v.maxLength(150)]),
-	description: v.string([v.toTrimmed(), v.minLength(4), v.maxLength(500)]),
-	content: v.string([v.minLength(1)]),
+	title: v.string([
+		v.toTrimmed(),
+		v.minLength(4, 'Title too short'),
+		v.maxLength(150, 'Title too long'),
+	]),
+	description: v.string([
+		v.toTrimmed(),
+		v.minLength(4, 'Description too short'),
+		v.maxLength(500, 'Description too long'),
+	]),
+	content: v.string([v.minLength(1, 'Content too short')]),
 	tags: v.transform(
-		v.string([v.toTrimmed(), v.minLength(4), v.maxLength(25)]),
+		v.string([
+			v.toTrimmed(),
+			v.minLength(3, 'Tag too short'),
+			v.maxLength(25, 'Tag too long'),
+		]),
 		(value) => {
 			return value.split(',');
 		},
