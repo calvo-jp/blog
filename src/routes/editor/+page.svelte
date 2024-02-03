@@ -15,7 +15,7 @@
 	<title>Editor | Conduit</title>
 </svelte:head>
 
-<div class="mx-auto max-w-screen-md py-8">
+<div class="mx-auto max-w-screen-md px-4 py-8">
 	{#if form}
 		{#if form.success}
 			<Alert class="mb-4">{form.message}</Alert>

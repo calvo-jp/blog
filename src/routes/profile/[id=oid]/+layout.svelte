@@ -41,7 +41,7 @@
 </svelte:head>
 
 <div>
-	<section class="bg-gray-100 dark:bg-neutral-800/50">
+	<section class="bg-gray-100 px-4 dark:bg-neutral-800/50">
 		<div
 			class="mx-auto flex max-w-screen-md flex-col items-center justify-center pb-6 pt-10"
 		>
@@ -86,7 +86,7 @@
 		</div>
 	</section>
 
-	<section class="mx-auto mt-10 max-w-screen-md">
+	<section class="mx-auto mt-10 max-w-screen-md px-4">
 		<nav>
 			<ul
 				class="relative flex border-b border-gray-200 dark:border-neutral-800"

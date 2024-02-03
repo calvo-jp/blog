@@ -46,8 +46,10 @@
 		</div>
 	{/if}
 
-	<div class="mx-auto flex max-w-screen-lg items-start gap-8 px-4 py-6">
-		<section class="grow">
+	<div
+		class="mx-auto flex max-w-screen-lg flex-col items-start gap-8 px-4 py-6 lg:flex-row"
+	>
+		<section class="lg:order-0 order-1 grow">
 			<nav>
 				<ul
 					class="relative flex border-b border-gray-200 dark:border-neutral-800"
@@ -76,7 +78,7 @@
 		</section>
 
 		<section
-			class="w-64 shrink-0 rounded bg-gray-100 p-4 dark:bg-neutral-800/50"
+			class="order-0 w-full shrink-0 rounded bg-gray-100 p-4 dark:bg-neutral-800/50 lg:order-1 lg:w-64"
 		>
 			<h2 class="tracking-wide">Popular Tags</h2>
 
