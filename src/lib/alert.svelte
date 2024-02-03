@@ -1,35 +1,29 @@
 <script lang="ts">
 	import type {HTMLAttributes} from 'svelte/elements';
 	import {twMerge} from 'tailwind-merge';
+	import {alertRecipe, type AlertVariants} from './alert.recipe';
 	import CheckCircleIcon from './check-circle-icon.svelte';
 	import ExclamationCircleIcon from './exclamation-circle-icon.svelte';
+	import type {Assign} from './types';
 
-	interface Props extends HTMLAttributes<HTMLDivElement> {
-		status?: 'error' | 'success';
-	}
+	interface AlertProps
+		extends Assign<HTMLAttributes<HTMLDivElement>, AlertVariants> {}
 
 	let {
 		status = 'success',
 		children,
 		class: className,
 		...props
-	} = $props<Props>();
+	} = $props<AlertProps>();
+
+	const recipe = $derived(alertRecipe({status}));
 </script>
 
-<div
-	role="alert"
-	class={twMerge(
-		'flex items-center gap-2 rounded p-4 leading-none',
-		status === 'error' && 'bg-red-50 text-red-600',
-		status === 'success' && 'bg-green-50 text-green-600',
-		className,
-	)}
-	{...props}
->
+<div role="alert" class={twMerge(recipe.root(), className)} {...props}>
 	{#if status === 'error'}
-		<CheckCircleIcon class="h-5 w-5" />
+		<CheckCircleIcon class={recipe.icon()} />
 	{:else}
-		<ExclamationCircleIcon class="h-5 w-5" />
+		<ExclamationCircleIcon class={recipe.icon()} />
 	{/if}
 
 	{#if children}
