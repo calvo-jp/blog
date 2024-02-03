@@ -3,7 +3,7 @@
 
 	const localStorageKey = 'theme';
 
-	$effect.pre(() => {
+	$effect.pre(function assignCorrectTheme() {
 		const theme = localStorage.getItem(localStorageKey);
 
 		if (theme === 'dark') {
@@ -15,7 +15,7 @@
 		}
 	});
 
-	$effect(() => {
+	$effect(function handleThemeChange() {
 		if (themeStore.theme === 'dark') {
 			document.documentElement.classList.add('dark');
 			localStorage.setItem(localStorageKey, 'dark');
@@ -31,6 +31,28 @@
 				document.documentElement.classList.remove('dark');
 			}
 		}
+	});
+
+	$effect(function watchThemeChanges() {
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+		const handler = (e: MediaQueryListEvent) => {
+			console.log(themeStore.theme);
+
+			if (themeStore.theme === 'system') {
+				if (e.matches) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			}
+		};
+
+		mediaQuery.addEventListener('change', handler);
+
+		return () => {
+			mediaQuery.removeEventListener('change', handler);
+		};
 	});
 </script>
 

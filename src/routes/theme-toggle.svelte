@@ -11,10 +11,12 @@
 	onclick={themeStore.toggleTheme}
 >
 	{#if themeStore.theme === 'dark'}
-		<MoonIcon class="h-5 w-5" />
+		<MoonIcon class="h-5 w-5" aria-hidden />
 	{:else if themeStore.theme === 'light'}
-		<SunIcon class="h-5 w-5" />
+		<SunIcon class="h-5 w-5" aria-hidden />
 	{:else}
-		<LaptopIcon class="h-5 w-5" />
+		<LaptopIcon class="h-5 w-5" aria-hidden />
 	{/if}
+
+	<span class="sr-only">Change theme</span>
 </button>
