@@ -1,16 +1,3 @@
 @tailwind base;
-
-@layer base {
-	html {
-		color-scheme: light;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		html {
-			color-scheme: dark;
-		}
-	}
-}
-
 @tailwind components;
 @tailwind utilities;

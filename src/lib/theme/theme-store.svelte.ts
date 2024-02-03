@@ -1,4 +1,4 @@
-export type Theme = 'dark' | 'light' | 'system';
+type Theme = 'dark' | 'light' | 'system';
 
 function createThemeStore() {
 	let theme = $state<Theme | undefined>();
@@ -10,18 +10,20 @@ function createThemeStore() {
 	const toggleTheme = () => {
 		/*
 		 * Sequence:
-		 * dark -> light -> system
+		 * light -> dark -> system
 		 */
 
 		switch (theme) {
-			case 'dark':
-				theme = 'light';
-				break;
 			case 'light':
+				theme = 'dark';
+				break;
+			case 'dark':
 				theme = 'system';
 				break;
+			case 'system':
+				theme = 'light';
+				break;
 			default:
-				theme = 'dark';
 				break;
 		}
 	};

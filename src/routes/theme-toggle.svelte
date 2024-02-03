@@ -5,18 +5,20 @@
 	import {themeStore} from '$lib/theme';
 </script>
 
-<button
-	type="button"
-	class="flex rounded-lg bg-gray-50 p-1 text-gray-700 dark:bg-neutral-700/20 dark:text-neutral-400"
-	onclick={themeStore.toggleTheme}
->
-	{#if themeStore.theme === 'dark'}
-		<MoonIcon class="h-5 w-5" aria-hidden />
-	{:else if themeStore.theme === 'light'}
-		<SunIcon class="h-5 w-5" aria-hidden />
-	{:else}
-		<LaptopIcon class="h-5 w-5" aria-hidden />
-	{/if}
+{#if themeStore.theme}
+	<button
+		type="button"
+		class="flex rounded-lg bg-gray-50 p-1 text-gray-700 dark:bg-neutral-700/20 dark:text-neutral-400"
+		onclick={themeStore.toggleTheme}
+	>
+		{#if themeStore.theme === 'dark'}
+			<MoonIcon class="h-5 w-5" aria-hidden />
+		{:else if themeStore.theme === 'light'}
+			<SunIcon class="h-5 w-5" aria-hidden />
+		{:else}
+			<LaptopIcon class="h-5 w-5" aria-hidden />
+		{/if}
 
-	<span class="sr-only">Change theme</span>
-</button>
+		<span class="sr-only">Change theme</span>
+	</button>
+{/if}
