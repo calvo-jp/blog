@@ -13,12 +13,16 @@ function createThemeStore() {
 		 * dark -> light -> system
 		 */
 
-		if (theme === 'dark') {
-			theme = 'light';
-		} else if (theme === 'light') {
-			theme = 'system';
-		} else {
-			theme = 'dark';
+		switch (theme) {
+			case 'dark':
+				theme = 'light';
+				break;
+			case 'light':
+				theme = 'system';
+				break;
+			default:
+				theme = 'dark';
+				break;
 		}
 	};
 

@@ -1,14 +1,14 @@
 <script lang="ts">
 	import {themeStore} from './theme-store.svelte';
 
-	const localStorageKey = 'theme';
+	const darkModeQuery = '(prefers-color-scheme: dark)';
 
 	$effect.pre(function assignCorrectTheme() {
-		const theme = localStorage.getItem(localStorageKey);
+		const localStorageValue = localStorage.getItem('theme');
 
-		if (theme === 'dark') {
+		if (localStorageValue === 'dark') {
 			themeStore.updateTheme('dark');
-		} else if (theme === 'light') {
+		} else if (localStorageValue === 'light') {
 			themeStore.updateTheme('light');
 		} else {
 			themeStore.updateTheme('system');
@@ -16,49 +16,51 @@
 	});
 
 	$effect(function handleThemeChange() {
+		const html = document.documentElement;
+		const localStorageKey = 'theme';
+
 		if (themeStore.theme === 'dark') {
-			document.documentElement.classList.add('dark');
+			html.classList.add('dark');
 			localStorage.setItem(localStorageKey, 'dark');
 		} else if (themeStore.theme === 'light') {
-			document.documentElement.classList.remove('dark');
+			html.classList.remove('dark');
 			localStorage.setItem(localStorageKey, 'light');
 		} else {
 			localStorage.setItem(localStorageKey, 'system');
 
-			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				document.documentElement.classList.add('dark');
+			if (window.matchMedia(darkModeQuery).matches) {
+				html.classList.add('dark');
 			} else {
-				document.documentElement.classList.remove('dark');
+				html.classList.remove('dark');
 			}
 		}
 	});
 
 	$effect(function watchThemeChanges() {
-		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		const html = document.documentElement;
+		const mediaQueryList = window.matchMedia(darkModeQuery);
 
 		const handler = (e: MediaQueryListEvent) => {
-			console.log(themeStore.theme);
-
 			if (themeStore.theme === 'system') {
 				if (e.matches) {
-					document.documentElement.classList.add('dark');
+					html.classList.add('dark');
 				} else {
-					document.documentElement.classList.remove('dark');
+					html.classList.remove('dark');
 				}
 			}
 		};
 
-		mediaQuery.addEventListener('change', handler);
+		mediaQueryList.addEventListener('change', handler);
 
 		return () => {
-			mediaQuery.removeEventListener('change', handler);
+			mediaQueryList.removeEventListener('change', handler);
 		};
 	});
 </script>
 
 <svelte:head>
 	<script>
-		(function (w, d, l, k) {
+		(function (w, d, l, k, q) {
 			const t = l.getItem(k);
 
 			if (t === 'dark') {
@@ -66,7 +68,7 @@
 			} else if (t === 'light') {
 				d.classList.remove('dark');
 			} else {
-				if (w.matchMedia('(prefers-color-scheme: dark)').matches) {
+				if (w.matchMedia(q).matches) {
 					d.classList.add('dark');
 
 					if (t !== 'system') {
@@ -80,6 +82,12 @@
 					}
 				}
 			}
-		})(window, document.documentElement, localStorage, 'theme');
+		})(
+			window,
+			document.documentElement,
+			localStorage,
+			'theme',
+			'(prefers-color-scheme: dark)',
+		);
 	</script>
 </svelte:head>
