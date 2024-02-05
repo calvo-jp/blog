@@ -88,8 +88,9 @@
 						<a
 							href="/{tag}"
 							class="block rounded-full bg-gray-500 px-2 py-1 text-sm leading-none text-white transition-colors duration-200 hover:bg-gray-600 dark:bg-neutral-700/30 dark:hover:bg-neutral-700/60"
-							>{tag}</a
 						>
+							{tag}
+						</a>
 					</li>
 				{/each}
 			</ul>
