@@ -1,5 +1,6 @@
 import {prisma} from '$lib/server/prisma';
 import type {Prisma} from '@prisma/client';
+import {error} from '@sveltejs/kit';
 import * as v from 'valibot';
 import type {PageServerLoad} from './$types';
 
@@ -15,6 +16,10 @@ export const load: PageServerLoad = async (event) => {
 			has: event.params.tag,
 		},
 	};
+
+	const count = await prisma.post.count({where});
+
+	if (count <= 0) return error(404, {message: 'Tag does not exist'});
 
 	const rows = await prisma.post.findMany({
 		select: {
@@ -51,8 +56,6 @@ export const load: PageServerLoad = async (event) => {
 			createdAt: 'desc',
 		},
 	});
-
-	const count = await prisma.post.count({where});
 
 	return {
 		tag,
