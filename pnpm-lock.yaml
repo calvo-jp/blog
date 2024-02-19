@@ -15,7 +15,7 @@ dependencies:
     specifier: 5.9.1
     version: 5.9.1(prisma@5.9.1)
   '@untitled-theme/icons-svelte':
-    specifier: ^0.0.9
+    specifier: 0.0.9
     version: 0.0.9(svelte@5.0.0-next.57)
   bcrypt:
     specifier: 5.1.1
@@ -36,7 +36,7 @@ dependencies:
     specifier: 11.1.0
     version: 11.1.0
   slugify:
-    specifier: ^1.6.6
+    specifier: 1.6.6
     version: 1.6.6
   tailwind-merge:
     specifier: 2.2.1
