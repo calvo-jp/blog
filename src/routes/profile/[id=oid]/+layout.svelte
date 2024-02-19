@@ -1,10 +1,9 @@
 <script lang="ts">
 	import {enhance} from '$app/forms';
 	import {page} from '$app/stores';
-	import CogIcon from '$lib/cog-icon.svelte';
 	import {dataAttr} from '$lib/data-attr';
-	import RssIcon from '$lib/rss-icon.svelte';
 	import smiley from '$lib/smiley.jpeg';
+	import {Rss01Icon, Settings02Icon} from '@untitled-theme/icons-svelte';
 
 	const {data, children} = $props();
 	const ownProfile = $derived(data.user?.id === data.profile.id);
@@ -58,7 +57,7 @@
 					href="/settings"
 					class="flex items-center gap-1 self-end rounded border border-gray-400 px-2 py-1.5 text-gray-500 transition-colors duration-200 hover:bg-gray-200/50 dark:border-neutral-500 dark:text-neutral-400 dark:hover:bg-neutral-700/25"
 				>
-					<CogIcon class="h-4 w-4" />
+					<Settings02Icon class="h-4 w-4" />
 					<span class="text-sm leading-none">Edit Profile Settings</span>
 				</a>
 			{:else}
@@ -76,7 +75,7 @@
 						disabled={!data.user}
 						data-selected={dataAttr(followed)}
 					>
-						<RssIcon class="h-4 w-4" />
+						<Rss01Icon class="h-4 w-4" />
 						<span class="text-sm leading-none">
 							{followed ? 'Unfollow' : 'Follow'}
 						</span>

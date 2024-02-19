@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {page} from '$app/stores';
 	import {dataAttr} from '$lib/data-attr';
-	import HashIcon from '$lib/hash-icon.svelte';
+	import {Hash02Icon} from '@untitled-theme/icons-svelte';
 
 	let {data, children} = $props();
 	let authenticated = $derived(Boolean(data.user));
@@ -22,7 +22,7 @@
 			hidden: authenticated,
 		},
 		{
-			icon: HashIcon,
+			icon: Hash02Icon,
 			href: `/${$page.params.tag}`,
 			label: $page.params.tag,
 			hidden: !$page.params.tag,

@@ -1,9 +1,8 @@
 <script lang="ts">
+	import {CheckCircleIcon, XCircleIcon} from '@untitled-theme/icons-svelte';
 	import type {HTMLAttributes} from 'svelte/elements';
 	import {twMerge} from 'tailwind-merge';
 	import {alertRecipe, type AlertVariants} from './alert.recipe';
-	import CheckCircleIcon from './check-circle-icon.svelte';
-	import ExclamationCircleIcon from './exclamation-circle-icon.svelte';
 	import type {Assign} from './types';
 
 	interface AlertProps
@@ -21,9 +20,9 @@
 
 <div role="alert" class={twMerge(recipe.root(), className)} {...props}>
 	{#if status === 'error'}
-		<CheckCircleIcon class={recipe.icon()} />
+		<XCircleIcon class={recipe.icon()} />
 	{:else}
-		<ExclamationCircleIcon class={recipe.icon()} />
+		<CheckCircleIcon class={recipe.icon()} />
 	{/if}
 
 	{#if children}

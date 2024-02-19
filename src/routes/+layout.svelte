@@ -1,8 +1,6 @@
 <script lang="ts">
 	import {page} from '$app/stores';
-	import CogIcon from '$lib/cog-icon.svelte';
 	import {dataAttr} from '$lib/data-attr';
-	import PenPaperIcon from '$lib/pen-paper-icon.svelte';
 	import {Theme} from '$lib/theme';
 	import '@fontsource/source-sans-3/300.css';
 	import '@fontsource/source-sans-3/400.css';
@@ -10,6 +8,7 @@
 	import '@fontsource/source-sans-3/600.css';
 	import '@fontsource/source-sans-3/700.css';
 	import '@fontsource/titillium-web/700.css';
+	import {Edit05Icon, Settings02Icon} from '@untitled-theme/icons-svelte';
 	import '../app.css';
 	import ThemeToggle from './theme-toggle.svelte';
 
@@ -37,14 +36,14 @@
 			hidden: authenticated,
 		},
 		{
-			icon: PenPaperIcon,
+			icon: Edit05Icon,
 			href: '/editor',
 			label: 'New Post',
 			active: $page.url.pathname === '/editor',
 			hidden: !authenticated,
 		},
 		{
-			icon: CogIcon,
+			icon: Settings02Icon,
 			href: '/settings',
 			label: 'Settings',
 			active: $page.url.pathname === '/settings',

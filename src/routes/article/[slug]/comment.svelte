@@ -3,7 +3,7 @@
 	import {page} from '$app/stores';
 	import {formatDate} from '$lib/format-date';
 	import smiley from '$lib/smiley.jpeg';
-	import TrashIcon from '$lib/trash-icon.svelte';
+	import {Trash01Icon} from '@untitled-theme/icons-svelte';
 
 	let {id, content, createdAt, authorId, authorName, authorImage} = $props<{
 		id: string;
@@ -50,7 +50,7 @@
 					class="text-gray-500 dark:text-neutral-600"
 					title="Delete Comment"
 				>
-					<TrashIcon class="h-4 w-4" />
+					<Trash01Icon class="h-4 w-4" />
 					<span class="sr-only">Delete comment</span>
 				</button>
 			</form>

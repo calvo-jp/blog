@@ -1,8 +1,10 @@
 <script lang="ts">
-	import LaptopIcon from '$lib/laptop-icon.svelte';
-	import MoonIcon from '$lib/moon-icon.svelte';
-	import SunIcon from '$lib/sun-icon.svelte';
 	import {themeStore} from '$lib/theme';
+	import {
+		Monitor02Icon,
+		Moon02Icon,
+		SunIcon,
+	} from '@untitled-theme/icons-svelte';
 </script>
 
 {#if themeStore.theme}
@@ -12,11 +14,11 @@
 		onclick={themeStore.toggleTheme}
 	>
 		{#if themeStore.theme === 'dark'}
-			<MoonIcon class="h-5 w-5" aria-hidden />
+			<Moon02Icon class="h-5 w-5" aria-hidden />
 		{:else if themeStore.theme === 'light'}
 			<SunIcon class="h-5 w-5" aria-hidden />
 		{:else}
-			<LaptopIcon class="h-5 w-5" aria-hidden />
+			<Monitor02Icon class="h-5 w-5" aria-hidden />
 		{/if}
 
 		<span class="sr-only">Change theme</span>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Input from '$lib/input.svelte';
 	import {uniqBy} from '$lib/unique-by';
-	import XIcon from '$lib/x-icon.svelte';
+	import {XIcon} from '@untitled-theme/icons-svelte';
 
 	interface Props {
 		name?: string;

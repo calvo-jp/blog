@@ -17,6 +17,7 @@
 		"@fontsource/source-sans-3": "5.0.18",
 		"@fontsource/titillium-web": "5.0.18",
 		"@prisma/client": "5.9.1",
+		"@untitled-theme/icons-svelte": "^0.0.9",
 		"bcrypt": "5.1.1",
 		"rehype-sanitize": "6.0.0",
 		"rehype-stringify": "10.0.0",
