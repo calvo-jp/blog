@@ -1,15 +1,16 @@
 <script lang="ts">
-	import {page} from '$app/stores';
-	import {dataAttr} from '$lib/data-attr';
-	import {Theme} from '$lib/theme';
 	import '@fontsource/source-sans-3/300.css';
 	import '@fontsource/source-sans-3/400.css';
 	import '@fontsource/source-sans-3/500.css';
 	import '@fontsource/source-sans-3/600.css';
 	import '@fontsource/source-sans-3/700.css';
 	import '@fontsource/titillium-web/700.css';
-	import {Edit05Icon, Settings02Icon} from '@untitled-theme/icons-svelte';
 	import '../app.css';
+
+	import {page} from '$app/stores';
+	import {dataAttr} from '$lib/data-attr';
+	import {Theme} from '$lib/theme';
+	import {Edit05Icon, Settings02Icon} from '@untitled-theme/icons-svelte';
 	import ThemeToggle from './theme-toggle.svelte';
 
 	let {children, data} = $props();
