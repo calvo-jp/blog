@@ -3,7 +3,8 @@
 	import {page} from '$app/stores';
 	import {dataAttr} from '$lib/data-attr';
 	import smiley from '$lib/smiley.jpeg';
-	import {Rss01Icon, Settings02Icon} from '@untitled-theme/icons-svelte';
+	import {Rss01Icon} from '@untitled-theme/icons-svelte';
+	import Settings02Icon from '@untitled-theme/icons-svelte/Settings02Icon.svelte';
 
 	const {data, children} = $props();
 	const ownProfile = $derived(data.user?.id === data.profile.id);

@@ -15,8 +15,8 @@ dependencies:
     specifier: 5.10.2
     version: 5.10.2(prisma@5.10.2)
   '@untitled-theme/icons-svelte':
-    specifier: 0.1.16
-    version: 0.1.16(svelte@5.0.0-next.69)
+    specifier: 0.1.18
+    version: 0.1.18(svelte@5.0.0-next.69)
   bcrypt:
     specifier: 5.1.1
     version: 5.1.1
@@ -928,8 +928,8 @@ packages:
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  /@untitled-theme/icons-svelte@0.1.16(svelte@5.0.0-next.69):
-    resolution: {integrity: sha512-lrMp45BnAgbF+zywr973Nbpore8lUKNHou8ptrshhX9UYPx/Pok5rb3qSJLJaZ0ql4qjt5/Y2I1+WwadjZqZIg==}
+  /@untitled-theme/icons-svelte@0.1.18(svelte@5.0.0-next.69):
+    resolution: {integrity: sha512-/nlvt3nGA8PdxpQpGLPDRR10teRwTqVdfqf58z4T3a4Od/kOXU9WqevsE5NzEySr3b4w+12qc13JoCX08kBuhg==}
     peerDependencies:
       svelte: '>=5.0.0'
     dependencies:
